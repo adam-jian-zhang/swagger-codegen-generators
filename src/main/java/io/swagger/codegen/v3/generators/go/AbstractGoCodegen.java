@@ -176,7 +176,9 @@ public abstract class AbstractGoCodegen extends DefaultCodegenConfig {
 
     @Override
     public String toModelFilename(String name) {
-        return toModel("model_" + name);
+        // return toModel("model_" + name);
+        // We want to preserve the naming convention of swagger2
+        return toModel(name);
     }
 
     public String toModel(String name) {
@@ -212,7 +214,9 @@ public abstract class AbstractGoCodegen extends DefaultCodegenConfig {
         name = name.replaceAll("-", "_"); // FIXME: a parameter should not be assigned. Also declare the methods parameters as 'final'.
 
         // e.g. PetApi.go => pet_api.go
-        return "api_" + underscore(name);
+        // return "api_" + underscore(name);
+        // preserve swagger2 naming convention.
+        return underscore(name) + "_api";
     }
 
     /**
